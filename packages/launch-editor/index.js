@@ -11,7 +11,6 @@
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
-// const chalk = require('chalk')
 const childProcess = require('child_process')
 
 const guessEditor = require('./guess')
