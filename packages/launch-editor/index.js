@@ -11,7 +11,6 @@
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
-const chalk = require('chalk')
 const childProcess = require('child_process')
 
 const guessEditor = require('./guess')
@@ -19,19 +18,20 @@ const getArgumentsForPosition = require('./get-args')
 
 function wrapErrorCallback (cb) {
   return (fileName, errorMessage) => {
-    console.log()
-    console.log(
-      chalk.red('Could not open ' + path.basename(fileName) + ' in the editor.')
-    )
-    if (errorMessage) {
-      if (errorMessage[errorMessage.length - 1] !== '.') {
-        errorMessage += '.'
-      }
-      console.log(
-        chalk.red('The editor process exited with an error: ' + errorMessage)
-      )
-    }
-    console.log()
+    // PATCH[skidding]: Allow clients to handle errors
+    // console.log()
+    // console.log(
+    //   chalk.red('Could not open ' + path.basename(fileName) + ' in the editor.')
+    // )
+    // if (errorMessage) {
+    //   if (errorMessage[errorMessage.length - 1] !== '.') {
+    //     errorMessage += '.'
+    //   }
+    //   console.log(
+    //     chalk.red('The editor process exited with an error: ' + errorMessage)
+    //   )
+    // }
+    // console.log()
     if (cb) cb(fileName, errorMessage)
   }
 }
